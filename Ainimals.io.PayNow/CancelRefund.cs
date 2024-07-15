@@ -9,7 +9,7 @@ public class CancelRefund
 
     public record Response
     {
-        public enum StatusCode {get;set;}
-        public IEnumerable<PaymentRequest.Error>Errors { get; set; }
+        public StatusCode StatusCode {get; set;}
+        public IEnumerable<Error>Errors { get; set; }
     }
 }
