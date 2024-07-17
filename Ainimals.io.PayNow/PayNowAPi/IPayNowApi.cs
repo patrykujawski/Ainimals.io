@@ -1,8 +1,6 @@
-﻿using System.Data.Common;
-using System.Runtime.Versioning;
-using RestEase;
+﻿using RestEase;
 
-namespace Ainimals.io.PayNow;
+namespace Ainimals.io.PayNow.PayNowAPi;
 
 public interface IPayNowApi
 

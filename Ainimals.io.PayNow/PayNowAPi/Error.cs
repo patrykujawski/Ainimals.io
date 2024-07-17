@@ -1,4 +1,4 @@
-﻿namespace Ainimals.io.PayNow;
+﻿namespace Ainimals.io.PayNow.PayNowAPi;
 
 public record Error
 {
