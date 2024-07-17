@@ -8,5 +8,7 @@ public class RejectedPaymentState : IPaymentState
     {
         Console.WriteLine("The payment was not authorized by the buyer. ");
         context.SetState(new ConfirmedPaymentState());
+        context.SetState(new AbandonedPaymentState());
+       // context.SetState(new zakonczenie );
     }
 }

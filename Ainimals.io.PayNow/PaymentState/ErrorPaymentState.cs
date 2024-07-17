@@ -8,6 +8,8 @@ public class ErrorPaymentState: IPaymentState
     {
         Console.WriteLine(" Problem occurred during the payment process");
         context.SetState(new ConfirmedPaymentState());
+        context.SetState(new AbandonedPaymentState());
+        context.SetState(new ConfirmedPaymentState());// zakonczony
 
     }
 }

@@ -9,5 +9,8 @@ public class PendingPaymentState : IPaymentState
     {
         Console.WriteLine("Your payment method was chosen , Paynow waiting to complete payment ");
         context.SetState(new ConfirmedPaymentState());
+        context.SetState(new ErrorPaymentState());
+        context.SetState(new ExpiredPaymentState());
+        context.SetState(new RejectedPaymentState());
     }
 }

@@ -1,6 +1,11 @@
-﻿namespace Ainimals.io.PayNow;
+﻿using Ainimals.io.PayNow.PaymentState;
 
-public class AbandonedPaymentState
+namespace Ainimals.io.PayNow;
+
+public class AbandonedPaymentState:IPaymentState
 {
-    
+    public void Handle(PaymentContext context)
+    {
+        context.SetState( );
+    }
 }
