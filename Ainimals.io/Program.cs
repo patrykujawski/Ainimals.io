@@ -55,13 +55,12 @@ else
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
-app.UseAntiforgery();
+
 
 app.UseRouting();
-
+app.UseAntiforgery();
 app.MapBlazorHub();
 app.MapHub<NotificationHub>("/notifications");
-app.MapFallbackToPage("/_Host");
 app.AddImagineApiWebhook();
 
 app.MapRazorComponents<App>()
