@@ -15,14 +15,20 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.0"/>
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.SignalR.Common" Version="8.0.7" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0"/>
+        <PackageReference Include="RestEase" Version="1.6.4" />
     </ItemGroup>
 
     <ItemGroup>
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Ainimals.io.ImagineAPI\Ainimals.io.ImagineAPI.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,3 +1,4 @@
+using Ainimals.io;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -35,6 +36,7 @@ builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.Requ
     .AddDefaultTokenProviders();
 
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
+builder.Services.AddScoped<IWebhookNotifier, WebhookNotifier>();
 
 var app = builder.Build();
 
@@ -54,6 +56,13 @@ app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 app.UseAntiforgery();
+
+app.UseRouting();
+
+app.MapBlazorHub();
+app.MapHub<NotificationHub>("/notifications");
+app.MapFallbackToPage("/_Host");
+app.AddImagineApiWebhook();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
