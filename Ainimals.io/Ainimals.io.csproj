@@ -25,6 +25,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Ainimals.io.Domain\Ainimals.io.Domain.csproj" />
       <ProjectReference Include="..\Ainimals.io.ImagineAPI\Ainimals.io.ImagineAPI.csproj" />
     </ItemGroup>
 
