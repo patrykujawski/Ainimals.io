@@ -16,8 +16,15 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             .WithMany(x => x.Orders)
             .HasForeignKey(x => x.UserId)
             .IsRequired();
-        builder.Entity<Order>()
-            .Property(x => x.PaymentStatus)
+
+        builder.Entity<PaymentState>()
+            .HasOne(p => p.Order)
+            .WithOne(x => x.State)
+            .HasForeignKey<Order>(x=>x.PaymentStateId);
+        
+        
+        builder.Entity<PaymentState>()
+            .Property(x => x.State)
             .HasConversion(v => v.ToString(),
                 v => (PaymentStatus)Enum.Parse(typeof(PaymentStatus), v));
 

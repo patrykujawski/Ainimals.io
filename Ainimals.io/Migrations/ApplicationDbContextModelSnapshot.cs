@@ -92,9 +92,9 @@ namespace Ainimals.io.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("PaymentStatus")
+                    b.Property<string>("PaymentStateId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -102,9 +102,30 @@ namespace Ainimals.io.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PaymentStateId")
+                        .IsUnique();
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Ainimals.io.Data.PaymentState", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("OrderId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PaymentState");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -242,11 +263,19 @@ namespace Ainimals.io.Migrations
 
             modelBuilder.Entity("Ainimals.io.Data.Order", b =>
                 {
+                    b.HasOne("Ainimals.io.Data.PaymentState", "State")
+                        .WithOne("Order")
+                        .HasForeignKey("Ainimals.io.Data.Order", "PaymentStateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Ainimals.io.Data.ApplicationUser", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("State");
 
                     b.Navigation("User");
                 });
@@ -305,6 +334,12 @@ namespace Ainimals.io.Migrations
             modelBuilder.Entity("Ainimals.io.Data.ApplicationUser", b =>
                 {
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("Ainimals.io.Data.PaymentState", b =>
+                {
+                    b.Navigation("Order")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
