@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Ainimals.io.Components;
 using Ainimals.io.Components.Account;
 using Ainimals.io.Data;
+using Ainimals.io.Domain;
 using Ainimals.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,7 +19,7 @@ builder.Services.AddScoped<IdentityUserAccessor>();
 builder.Services.AddScoped<IdentityRedirectManager>();
 builder.Services.AddScoped<AuthenticationStateProvider, IdentityRevalidatingAuthenticationStateProvider>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-
+builder.Services.AddScoped<IPaymentStatusRepository, PaymentStatusRepository>();
 builder.Services.AddAuthentication(options =>
     {
         options.DefaultScheme = IdentityConstants.ApplicationScheme;
@@ -65,6 +66,7 @@ app.MapBlazorHub();
 app.MapHub<NotificationHub>("/notifications");
 app.AddImagineApiWebhook();
 app.AddOrderApi();
+app.AddPaymentApi();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();

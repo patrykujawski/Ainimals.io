@@ -12,7 +12,11 @@ public class OrderDto
     public string PaymentStateId { get; set; }
     
 }
-
+public class PaymentStateDto
+{   public string Id { get; set; }
+    public PaymentState State { get; set; }
+    
+}
 public static class TestApi
 {
     public static void AddOrderApi(this WebApplication app)
@@ -39,8 +43,27 @@ public static class TestApi
             
         });
 
+        
+    }
+    public static void AddPaymentApi( this WebApplication app)
+    {
      
+        app.MapPost("test/paymentState/",
+            ([FromBody] PaymentStateDto paymentState, [FromServices] IPaymentStatusRepository repository) => repository.Add(paymentState));
+        app.MapGet("/test/paymentState/{id}", ([FromRoute] string id,[FromServices] IPaymentStatusRepository repository) =>
+        repository.GetPaymentStatus(id));
+        
+        app.MapPatch("/test/paymentState/{id}", async ([FromRoute] string id, [FromBody] PaymentStateDto paymentState, [FromServices] IPaymentStatusRepository repository) =>
+        {
+            await repository.Update(id, paymentState);
+        });
+
+        app.MapDelete("/test/paymentState/{id}",
+            async ([FromRoute] string id, [FromServices] IPaymentStatusRepository repository) =>
+            {
+                await repository.Delete(id);
+            });
     }
 
-    
+   
 }
