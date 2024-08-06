@@ -3,18 +3,12 @@
 namespace Ainimals.io.PayNow.PayNowAPi;
 
 public interface IPayNowApi
-
 {
-   
     [Post("/v1/payments")]
-   Task<PaymentRequest.Response>  PaymentRequest([Body] PaymentRequest.Payload payload);
-
-
-    
+    Task<Payment.Response>  PaymentRequest([Body] Payment.Payload payload);
+   
     [Get("/v1/payments/{paymentId}/status")]
     Task PaymentStatus([Path]string paymentId);
-
-
     [Get("/v2/payments/paymentmethods")]
     Task PaymentMethods();
 
@@ -29,5 +23,21 @@ public interface IPayNowApi
 
     [Post("/v1/refunds/{refundId}/cancel")]
     Task<RefundStatus.Response> CancelRefund([Path] string refundId);
+}
 
+public interface IPayNowClient
+{
+    Payment.Response CreatePayment(Payment.Payload request);
+    // Inne metody np. sprawdzanie statusu płatności
+}
+
+public class PayNowClient : IPayNowClient
+{
+    private IPayNowApi _payNowApi = RestClient.For<IPayNowApi>("");
+
+    public Payment.Response CreatePayment(Payment.Payload request)
+    {
+        // Implementacja wysyłania żądania do PayNow API
+        throw new NotImplementedException();
+    }
 }

@@ -7,54 +7,32 @@ namespace Ainimals.Repositories;
 
 public interface IOrderRepository
 {
-    Task<Order?> GetOrder(string id);
-    Task CreateFromDto(OrderDto orderDto);
-    Task Add(string id, OrderDto order);
-    Task<Order> Update(string id, OrderDto order);
+    Order GetOrderById(int orderId);
+    void UpdateOrder(Order order);
+    void SaveOrder(Order order);
 }
 
-public class OrderRepository(ApplicationDbContext context) : IOrderRepository
+public class OrderRepository : IOrderRepository
 {
-    public async Task<Order?> GetOrder(string id)
+    // Implementacja operacji CRUD na bazie danych dla zamówień
+    public Order GetOrderById(int orderId)
     {
-        return await context.Orders.FindAsync(id);
+        // Implementacja pobierania zamówienia z bazy danych
+        throw new NotImplementedException();
+
     }
 
-    public Task CreateFromDto(OrderDto orderDto)
+    public void UpdateOrder(Order order)
     {
+        // Implementacja aktualizacji zamówienia w bazie danych
+        throw new NotImplementedException();
+
+    }
+
+    public void SaveOrder(Order order)
+    {
+        // Implementacja zapisu zamówienia do bazy danych
         throw new NotImplementedException();
     }
-
-    public async Task Add(string id, OrderDto orderDto)
-    {
-        var order = await context.Orders.FindAsync(id);
-        if (order is not null) throw new Exception("Nie dodaje bo juz istnieje");
-        
-
-        var newOrder = new Order
-        {
-            Id = id,
-            PaymentStateId = orderDto.PaymentStateId,
-            UserId = orderDto.UserId,
-        };
-        // czy przypadkiem order o takim id juz istnieje, jesli tak to rzucam exception [zaimplementować]
-        // jesli nie ma to stworzyc nowy obiekt Order, nadac Id - Guid.NewGuid();
-        // przekazac userId i paymentId z orderDto do nowej instacji ordera i zapisac w bazie przez context.Order.Add
-        
-        await context.Orders.AddAsync(newOrder);
-        await context.SaveChangesAsync();
-    }
-
-    public async Task<Order> Update(string id, OrderDto orderDto)
-    {
-        var order = await context.Orders.FindAsync(id);
-        if (order is null) throw new Exception();
-        context.Orders.Update(order); 
-        await context.SaveChangesAsync();
-        return order;
-    }
-    
-
 }
-
 

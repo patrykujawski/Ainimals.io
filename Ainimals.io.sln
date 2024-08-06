@@ -8,8 +8,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ainimals.io.ImagineAPI", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ainimals.io.Domain", "Ainimals.io.Domain\Ainimals.io.Domain.csproj", "{08809EB8-2047-45C0-B2B3-171F7477A0BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ainimals.Repositories", "Ainimals.Repositories\Ainimals.Repositories.csproj", "{93864A6F-63CF-4748-B2FB-F664000A8793}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,9 +30,5 @@ Global
 		{08809EB8-2047-45C0-B2B3-171F7477A0BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08809EB8-2047-45C0-B2B3-171F7477A0BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08809EB8-2047-45C0-B2B3-171F7477A0BF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93864A6F-63CF-4748-B2FB-F664000A8793}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93864A6F-63CF-4748-B2FB-F664000A8793}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93864A6F-63CF-4748-B2FB-F664000A8793}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93864A6F-63CF-4748-B2FB-F664000A8793}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
