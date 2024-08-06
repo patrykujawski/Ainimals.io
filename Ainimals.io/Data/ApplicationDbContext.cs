@@ -8,6 +8,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     : IdentityDbContext<ApplicationUser>(options)
 {
     public DbSet<Order> Orders { get; set; }
+    public DbSet<PaymentState> PaymentState { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

@@ -9,7 +9,8 @@ public static class ImagineWebhook
     public static void AddImagineApiWebhook(this WebApplication app)
     {
         app.MapPost("/webhook/image/",
-            async ([FromBody] WebhookResponse response, IWebhookNotifier webhookNotifier) => await webhookNotifier.ImageGenerated(response));
+            async ([FromBody] WebhookResponse response, IWebhookNotifier webhookNotifier) => 
+            await webhookNotifier.ImageGenerated(response));
     }
 }
 
